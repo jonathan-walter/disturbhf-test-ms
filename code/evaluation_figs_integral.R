@@ -8,23 +8,23 @@ library(viridis)
 ## <------------------------------- fix file paths
 
 ## load simulation output
-sim.flat.negwedge<-readRDS("~/Box Sync/EstuaryStormResilience/AlgorithmTestOutput/sim_flat_negwedge_20210323_t5.rds")
-sim.flat.poswedge<-readRDS("~/Box Sync/EstuaryStormResilience/AlgorithmTestOutput/sim_flat_poswedge_20210323_t5.rds")
-sim.flat.negs<-readRDS("~/Box Sync/EstuaryStormResilience/AlgorithmTestOutput/sim_flat_negs_20210323_t5.rds")
-sim.flat.poss<-readRDS("~/Box Sync/EstuaryStormResilience/AlgorithmTestOutput/sim_flat_poss_20210323_t5.rds")
-sim.sine.negwedge<-readRDS("~/Box Sync/EstuaryStormResilience/AlgorithmTestOutput/sim_sin_negwedge_20210323_t5.rds")
-sim.sine.poswedge<-readRDS("~/Box Sync/EstuaryStormResilience/AlgorithmTestOutput/sim_sin_poswedge_20210323_t5.rds")
-sim.sine.negs<-readRDS("~/Box Sync/EstuaryStormResilience/AlgorithmTestOutput/sim_sin_negs_20210323_t5.rds")
-sim.sine.poss<-readRDS("~/Box Sync/EstuaryStormResilience/AlgorithmTestOutput/sim_sin_poss_20210323_t5.rds")
+sim.flat.negwedge<-readRDS("~/Box Sync/EstuaryStormResilience/AlgorithmTestOutput/sim_flat_negwedge_integral_20211011_t5.rds")
+sim.flat.poswedge<-readRDS("~/Box Sync/EstuaryStormResilience/AlgorithmTestOutput/sim_flat_poswedge_integral_20211011_t5.rds")
+sim.flat.negs<-readRDS("~/Box Sync/EstuaryStormResilience/AlgorithmTestOutput/sim_flat_negs_integral_20211011_t5.rds")
+sim.flat.poss<-readRDS("~/Box Sync/EstuaryStormResilience/AlgorithmTestOutput/sim_flat_poss_integral_20211011_t5.rds")
+sim.sine.negwedge<-readRDS("~/Box Sync/EstuaryStormResilience/AlgorithmTestOutput/sim_sin_negwedge_integral_20211011_t5.rds")
+sim.sine.poswedge<-readRDS("~/Box Sync/EstuaryStormResilience/AlgorithmTestOutput/sim_sin_poswedge_integral_20211011_t5.rds")
+sim.sine.negs<-readRDS("~/Box Sync/EstuaryStormResilience/AlgorithmTestOutput/sim_sin_negs_integral_20211011_t5.rds")
+sim.sine.poss<-readRDS("~/Box Sync/EstuaryStormResilience/AlgorithmTestOutput/sim_sin_poss_integral_20211011_t5.rds")
 
-sim.flat.negwedge2<-readRDS("~/Box Sync/EstuaryStormResilience/AlgorithmTestOutput/sim_flat_negwedge_adapt_20210323_t5.rds")
-sim.flat.poswedge2<-readRDS("~/Box Sync/EstuaryStormResilience/AlgorithmTestOutput/sim_flat_poswedge_adapt_20210323_t5.rds")
-sim.flat.negs2<-readRDS("~/Box Sync/EstuaryStormResilience/AlgorithmTestOutput/sim_flat_negs_adapt_20210323_t5.rds")
-sim.flat.poss2<-readRDS("~/Box Sync/EstuaryStormResilience/AlgorithmTestOutput/sim_flat_poss_adapt_20210323_t5.rds")
-sim.sine.negwedge2<-readRDS("~/Box Sync/EstuaryStormResilience/AlgorithmTestOutput/sim_sin_negwedge_adapt_20210323_t5.rds")
-sim.sine.poswedge2<-readRDS("~/Box Sync/EstuaryStormResilience/AlgorithmTestOutput/sim_sin_poswedge_adapt_20210323_t5.rds")
-sim.sine.negs2<-readRDS("~/Box Sync/EstuaryStormResilience/AlgorithmTestOutput/sim_sin_negs_adapt_20210323_t5.rds")
-sim.sine.poss2<-readRDS("~/Box Sync/EstuaryStormResilience/AlgorithmTestOutput/sim_sin_poss_adapt_20210323_t5.rds")
+sim.flat.negwedge2<-readRDS("~/Box Sync/EstuaryStormResilience/AlgorithmTestOutput/sim_flat_negwedge_adapt_integral_20211011_t5.rds")
+sim.flat.poswedge2<-readRDS("~/Box Sync/EstuaryStormResilience/AlgorithmTestOutput/sim_flat_poswedge_adapt_integral_20211011_t5.rds")
+sim.flat.negs2<-readRDS("~/Box Sync/EstuaryStormResilience/AlgorithmTestOutput/sim_flat_negs_adapt_integral_20211011_t5.rds")
+sim.flat.poss2<-readRDS("~/Box Sync/EstuaryStormResilience/AlgorithmTestOutput/sim_flat_poss_adapt_integral_20211011_t5.rds")
+sim.sine.negwedge2<-readRDS("~/Box Sync/EstuaryStormResilience/AlgorithmTestOutput/sim_sin_negwedge_adapt_integral_20211011_t5.rds")
+sim.sine.poswedge2<-readRDS("~/Box Sync/EstuaryStormResilience/AlgorithmTestOutput/sim_sin_poswedge_adapt_integral_20211011_t5.rds")
+sim.sine.negs2<-readRDS("~/Box Sync/EstuaryStormResilience/AlgorithmTestOutput/sim_sin_negs_adapt_integral_20211011_t5.rds")
+sim.sine.poss2<-readRDS("~/Box Sync/EstuaryStormResilience/AlgorithmTestOutput/sim_sin_poss_adapt_integral_20211011_t5.rds")
 
 ##-----------------------------------------------------------------------------
 ## helper functions
@@ -149,7 +149,6 @@ falmSurface<-function(evals, along.s, along.r, plotit=TRUE, title=NULL, zmax=NUL
   }
   return(out)
 }
-
 
 errorSurface<-function(evals, along.s, along.r, plotit=TRUE, title=NULL){
   out<-matrix(NA, nrow=length(along.s)-1, ncol=length(along.r)-1)
@@ -321,7 +320,7 @@ summary(c(tpr.sine.negwedge.adapt-tpr.sine.negwedge))
 
 # jointmax<-ceiling(max(c(fpr.flat.negwedge,fpr.flat.negs,fpr.flat.negwedge.adapt,fpr.flat.negs.adapt)))
 
-png("~/Box Sync/EstuaryStormResilience/AlgorithmManuscript/fig3_tpr_negative.png",
+png("~/Box Sync/EstuaryStormResilience/AlgorithmManuscript/figSX_tpr_negative_integral.png",
     units="in", res=300, width=6.5,height=8)
 
 layout(laymat4, widths=c(0.87/2,0.87/2,0.13))
@@ -369,7 +368,8 @@ plotScale <- function(x, joint.max){
   return(xx)
 }
 
-png("~/Box Sync/EstuaryStormResilience/AlgorithmManuscript/fig4_recoverror_negative.png",
+
+png("~/Box Sync/EstuaryStormResilience/AlgorithmManuscript/figSX_recoverror_negative_integral.png",
     units="in", res=300, width=6.5,height=8)
 
 layout(laymat4, widths=c(0.87/2,0.87/2,0.13))
@@ -410,7 +410,7 @@ dev.off()
 #Figure 3b: error for recovery date histograms ----------------------------------------------------
 
 
-png("~/Box Sync/EstuaryStormResilience/AlgorithmManuscript/hist_recoverror_negative.png",
+png("~/Box Sync/EstuaryStormResilience/AlgorithmManuscript/FigSX_hist_recoverror_negative_integral.png",
     units="in", res=300, width=6.5,height=8)
 
 par(mar=c(2.1,2.1,1.1,1.1),oma=c(2.1,5.1,1.3,0),mfcol=c(4,2))
@@ -441,13 +441,13 @@ dev.off()
 
 
 
-#Figure SX: false positiver rate surfaces-------------------------------------------------------
+#Figure SX: false positive rate -------------------------------------------------------
 joint.min<-min(c(fpr.flat.negwedge, fpr.flat.negs, fpr.sine.negs, fpr.sine.negwedge,
                  fpr.flat.negwedge.adapt, fpr.flat.negs.adapt, fpr.sine.negs.adapt, fpr.sine.negwedge.adapt))
 joint.max<-max(c(fpr.flat.negwedge, fpr.flat.negs, fpr.sine.negs, fpr.sine.negwedge,
                  fpr.flat.negwedge.adapt, fpr.flat.negs.adapt, fpr.sine.negs.adapt, fpr.sine.negwedge.adapt))
 
-png("~/Box Sync/EstuaryStormResilience/AlgorithmManuscript/figSX_fpr_negative.png",
+png("~/Box Sync/EstuaryStormResilience/AlgorithmManuscript/figSX_fpr_negative_integral.png",
     units="in", res=300, width=6.5,height=8)
 
 layout(laymat4, widths=c(0.87/2,0.87/2,0.13))
@@ -478,92 +478,92 @@ mtext("Adaptive reference", outer=T, at=0.9/4*3, line=-0.5,cex=0.8)
 dev.off()
 
 
-### for positive disturbances --------------------------------------------------------
-
-
-#Figure SX: TPR for positive disturbances
-summary(c(tpr.flat.poswedge))
-summary(c(tpr.flat.poss))
-summary(c(tpr.sine.poswedge))
-summary(c(tpr.sine.poss))
-summary(c(tpr.flat.poswedge.adapt))
-summary(c(tpr.flat.poss.adapt))
-summary(c(tpr.sine.poswedge.adapt))
-summary(c(tpr.sine.poss.adapt))
-
-summary(c(tpr.sine.poss.adapt-tpr.sine.poss))
-summary(c(tpr.sine.poswedge.adapt-tpr.sine.poswedge))
-
-# jointmax<-ceiling(max(c(fpr.flat.poswedge,fpr.flat.poss,fpr.flat.poswedge.adapt,fpr.flat.poss.adapt)))
-
-png("~/Box Sync/EstuaryStormResilience/AlgorithmManuscript/figSX_tpr_positive.png",
-    units="in", res=300, width=6.5,height=8)
-
-layout(laymat4, widths=c(0.87/2,0.87/2,0.13))
-par(mar=c(2.1,2.1,1.1,1.1),oma=c(2.1,5.1,1.3,0))
-image(along.s, along.r, tpr.flat.poswedge, col=rev(viridis(25)), zlim=c(0,1), ylab="")
-mtext("Wedge disturbance\nFlat background",2,cex=0.9,line=0.25,at=7/8,outer=T)
-image(along.s, along.r, tpr.sine.poswedge, col=rev(viridis(25)), zlim=c(0,1), ylab="")
-mtext("Wedge disturbance\nSeasonal background",2,cex=0.9,line=0.25,at=5/8,outer=T)
-mtext("S disturbance\nFlat background",2,cex=0.9,line=0.25,at=3/8,outer=T)
-image(along.s, along.r, tpr.flat.poss, col=rev(viridis(25)), zlim=c(0,1))
-mtext("S disturbance\nSeasonal background",2,cex=0.9,line=0.25,at=1/8,outer=T)
-image(along.s, along.r, tpr.sine.poss, col=rev(viridis(25)), zlim=c(0,1))
-
-image(along.s, along.r, tpr.flat.poswedge.adapt, col=rev(viridis(25)), zlim=c(0,1), ylab="")
-image(along.s, along.r, tpr.flat.poss.adapt, col=rev(viridis(25)), zlim=c(0,1))
-image(along.s, along.r, tpr.sine.poswedge.adapt, col=rev(viridis(25)), zlim=c(0,1), ylab="")
-image(along.s, along.r, tpr.sine.poss.adapt, col=rev(viridis(25)), zlim=c(0,1))
-
-par(mar=c(2.1,3.6,1.1,1.1), mgp=c(2.25,1,0), cex.axis=1.1, cex.lab=1.2)
-image(z=t(matrix(1:25)),col=rev(viridis(25)),xaxt="n",ylab="True detection rate")
-
-mtext("Severity",1,outer=T,line=0.5,at=0.9/2)
-mtext("Duration (days)",2,outer=T,line=3.5)
-mtext("Standard reference",outer=T,at=0.9/4,line=-0.5,cex=0.8)
-mtext("Adaptive reference", outer=T, at=0.9/4*3, line=-0.5,cex=0.8)
-
-dev.off()
-
-
-#Figure SX: error for recovery date surfaces-------------------------------------------------------
-
-joint.min<-min(c(error.flat.poswedge, error.flat.poss, error.sine.poss, error.sine.poswedge,
-                 error.flat.poswedge.adapt, error.flat.poss.adapt, error.sine.poss.adapt, error.sine.poswedge.adapt))
-joint.max<-max(c(error.flat.poswedge, error.flat.poss, error.sine.poss, error.sine.poswedge,
-                 error.flat.poswedge.adapt, error.flat.poss.adapt, error.sine.poss.adapt, error.sine.poswedge.adapt))
-
-png("~/Box Sync/EstuaryStormResilience/AlgorithmManuscript/figSX_recoverror_positive.png",
-    units="in", res=300, width=6.5,height=8)
-
-layout(laymat4, widths=c(0.87/2,0.87/2,0.13))
-par(mar=c(2.1,2.1,1.1,1.1),oma=c(2.1,5.1,1.3,0))
-image(along.s, along.r, error.flat.poswedge, col=viridis(25), zlim=c(joint.min,joint.max), ylab="")
-mtext("Wedge disturbance\nFlat background",2,cex=0.9,line=0.25,at=7/8,outer=T)
-image(along.s, along.r, error.sine.poswedge, col=viridis(25), zlim=c(joint.min,joint.max), ylab="")
-mtext("Wedge disturbance\nSeasonal background",2,cex=0.9,line=0.25,at=5/8,outer=T)
-mtext("S disturbance\nFlat background",2,cex=0.9,line=0.25,at=3/8,outer=T)
-image(along.s, along.r, error.flat.poss, col=viridis(25), zlim=c(joint.min,joint.max))
-mtext("S disturbance\nSeasonal background",2,cex=0.9,line=0.25,at=1/8,outer=T)
-image(along.s, along.r, error.sine.poss, col=viridis(25), zlim=c(joint.min,joint.max))
-
-image(along.s, along.r, error.flat.poswedge.adapt, col=viridis(25), zlim=c(joint.min,joint.max), ylab="")
-image(along.s, along.r, error.flat.poss.adapt, col=viridis(25), zlim=c(joint.min,joint.max))
-image(along.s, along.r, error.sine.poswedge.adapt, col=viridis(25), zlim=c(joint.min,joint.max), ylab="")
-image(along.s, along.r, error.sine.poss.adapt, col=viridis(25), zlim=c(joint.min,joint.max))
-
-par(mar=c(2.1,3.6,1.1,1.1), mgp=c(2.25,1,0), cex.axis=1.1, cex.lab=1.2)
-image(z=t(matrix(1:25)),col=viridis(25),xaxt="n",yaxt="n",ylab="Recovery date error (true-estimated)")
-axis(2,at=seq(0,1,length.out=4),labels=round(seq(floor(joint.min),ceiling(joint.max),length.out=4),1))
-
-mtext("Severity",1,outer=T,line=0.5,at=0.9/2)
-mtext("Duration (days)",2,outer=T,line=3.5)
-mtext("Standard reference",outer=T,at=0.9/4,line=-0.5,cex=0.8)
-mtext("Adaptive reference", outer=T, at=0.9/4*3, line=-0.5,cex=0.8)
-
-dev.off()
-
-
+# ### for positive disturbances --------------------------------------------------------
+# 
+# 
+# #Figure SX: TPR for positive disturbances
+# summary(c(tpr.flat.poswedge))
+# summary(c(tpr.flat.poss))
+# summary(c(tpr.sine.poswedge))
+# summary(c(tpr.sine.poss))
+# summary(c(tpr.flat.poswedge.adapt))
+# summary(c(tpr.flat.poss.adapt))
+# summary(c(tpr.sine.poswedge.adapt))
+# summary(c(tpr.sine.poss.adapt))
+# 
+# summary(c(tpr.sine.poss.adapt-tpr.sine.poss))
+# summary(c(tpr.sine.poswedge.adapt-tpr.sine.poswedge))
+# 
+# # jointmax<-ceiling(max(c(fpr.flat.poswedge,fpr.flat.poss,fpr.flat.poswedge.adapt,fpr.flat.poss.adapt)))
+# 
+# png("~/Box Sync/EstuaryStormResilience/AlgorithmManuscript/figSX_tpr_positive_integral.png",
+#     units="in", res=300, width=6.5,height=8)
+# 
+# layout(laymat4, widths=c(0.87/2,0.87/2,0.13))
+# par(mar=c(2.1,2.1,1.1,1.1),oma=c(2.1,5.1,1.3,0))
+# image(along.s, along.r, tpr.flat.poswedge, col=rev(viridis(25)), zlim=c(0,1), ylab="")
+# mtext("Wedge disturbance\nFlat background",2,cex=0.9,line=0.25,at=7/8,outer=T)
+# image(along.s, along.r, tpr.sine.poswedge, col=rev(viridis(25)), zlim=c(0,1), ylab="")
+# mtext("Wedge disturbance\nSeasonal background",2,cex=0.9,line=0.25,at=5/8,outer=T)
+# mtext("S disturbance\nFlat background",2,cex=0.9,line=0.25,at=3/8,outer=T)
+# image(along.s, along.r, tpr.flat.poss, col=rev(viridis(25)), zlim=c(0,1))
+# mtext("S disturbance\nSeasonal background",2,cex=0.9,line=0.25,at=1/8,outer=T)
+# image(along.s, along.r, tpr.sine.poss, col=rev(viridis(25)), zlim=c(0,1))
+# 
+# image(along.s, along.r, tpr.flat.poswedge.adapt, col=rev(viridis(25)), zlim=c(0,1), ylab="")
+# image(along.s, along.r, tpr.flat.poss.adapt, col=rev(viridis(25)), zlim=c(0,1))
+# image(along.s, along.r, tpr.sine.poswedge.adapt, col=rev(viridis(25)), zlim=c(0,1), ylab="")
+# image(along.s, along.r, tpr.sine.poss.adapt, col=rev(viridis(25)), zlim=c(0,1))
+# 
+# par(mar=c(2.1,3.6,1.1,1.1), mgp=c(2.25,1,0), cex.axis=1.1, cex.lab=1.2)
+# image(z=t(matrix(1:25)),col=rev(viridis(25)),xaxt="n",ylab="True detection rate")
+# 
+# mtext("Severity",1,outer=T,line=0.5,at=0.9/2)
+# mtext("Duration (days)",2,outer=T,line=3.5)
+# mtext("Standard reference",outer=T,at=0.9/4,line=-0.5,cex=0.8)
+# mtext("Adaptive reference", outer=T, at=0.9/4*3, line=-0.5,cex=0.8)
+# 
+# dev.off()
+# 
+# 
+# #Figure SX: error for recovery date surfaces-------------------------------------------------------
+# 
+# joint.min<-min(c(error.flat.poswedge, error.flat.poss, error.sine.poss, error.sine.poswedge,
+#                  error.flat.poswedge.adapt, error.flat.poss.adapt, error.sine.poss.adapt, error.sine.poswedge.adapt))
+# joint.max<-max(c(error.flat.poswedge, error.flat.poss, error.sine.poss, error.sine.poswedge,
+#                  error.flat.poswedge.adapt, error.flat.poss.adapt, error.sine.poss.adapt, error.sine.poswedge.adapt))
+# 
+# png("~/Box Sync/EstuaryStormResilience/AlgorithmManuscript/figSX_recoverror_positive_integral.png",
+#     units="in", res=300, width=6.5,height=8)
+# 
+# layout(laymat4, widths=c(0.87/2,0.87/2,0.13))
+# par(mar=c(2.1,2.1,1.1,1.1),oma=c(2.1,5.1,1.3,0))
+# image(along.s, along.r, error.flat.poswedge, col=viridis(25), zlim=c(joint.min,joint.max), ylab="")
+# mtext("Wedge disturbance\nFlat background",2,cex=0.9,line=0.25,at=7/8,outer=T)
+# image(along.s, along.r, error.sine.poswedge, col=viridis(25), zlim=c(joint.min,joint.max), ylab="")
+# mtext("Wedge disturbance\nSeasonal background",2,cex=0.9,line=0.25,at=5/8,outer=T)
+# mtext("S disturbance\nFlat background",2,cex=0.9,line=0.25,at=3/8,outer=T)
+# image(along.s, along.r, error.flat.poss, col=viridis(25), zlim=c(joint.min,joint.max))
+# mtext("S disturbance\nSeasonal background",2,cex=0.9,line=0.25,at=1/8,outer=T)
+# image(along.s, along.r, error.sine.poss, col=viridis(25), zlim=c(joint.min,joint.max))
+# 
+# image(along.s, along.r, error.flat.poswedge.adapt, col=viridis(25), zlim=c(joint.min,joint.max), ylab="")
+# image(along.s, along.r, error.flat.poss.adapt, col=viridis(25), zlim=c(joint.min,joint.max))
+# image(along.s, along.r, error.sine.poswedge.adapt, col=viridis(25), zlim=c(joint.min,joint.max), ylab="")
+# image(along.s, along.r, error.sine.poss.adapt, col=viridis(25), zlim=c(joint.min,joint.max))
+# 
+# par(mar=c(2.1,3.6,1.1,1.1), mgp=c(2.25,1,0), cex.axis=1.1, cex.lab=1.2)
+# image(z=t(matrix(1:25)),col=viridis(25),xaxt="n",yaxt="n",ylab="Recovery date error (true-estimated)")
+# axis(2,at=seq(0,1,length.out=4),labels=round(seq(floor(joint.min),ceiling(joint.max),length.out=4),1))
+# 
+# mtext("Severity",1,outer=T,line=0.5,at=0.9/2)
+# mtext("Duration (days)",2,outer=T,line=3.5)
+# mtext("Standard reference",outer=T,at=0.9/4,line=-0.5,cex=0.8)
+# mtext("Adaptive reference", outer=T, at=0.9/4*3, line=-0.5,cex=0.8)
+# 
+# dev.off()
+# 
+# 
 
 
 
@@ -685,25 +685,25 @@ dev.off()
 
 
 ## Figure for ERI poster
-
-laymat=matrix(1:4, nrow=1, byrow=TRUE)
-
-png("~/Box Sync/EstuaryStormResilience/AlgorithmManuscript/posterFig_tpr_error.png",
-    units="in", res=300, width=8,height=4)
-
-layout(laymat, widths=rep(c(0.4,0.1),2))
-par(mar=c(3.5,3.5,1.1,0.5), mgp=c(2,0.8,0), cex.axis=1.1, cex.lab=1.2)
-image(along.s, along.r, tpr.sine.negwedge.adapt, col=rev(viridis(25)), zlim=c(0,1),
-      xlab="Severity", ylab="Duration (days)")
-par(mar=c(2.1,3.6,1.1,1.1), mgp=c(2,0.8,0), cex.axis=1.1, cex.lab=1.2)
-image(z=t(matrix(1:25)),col=rev(viridis(25)),xaxt="n",ylab="True detection rate")
-
-par(mar=c(3.5,3.5,1.1,0.5), mgp=c(2,0.8,0), cex.axis=1.1, cex.lab=1.2)
-image(along.s, along.r, error.sine.negwedge.adapt, col=viridis(25), ylab="Duration (days)",
-      xlab="Severity")
-par(mar=c(2.1,3.6,1.1,1.1), mgp=c(2,0.8,0), cex.axis=1.1, cex.lab=1.2)
-image(z=t(matrix(1:25)),col=viridis(25),xaxt="n",yaxt="n",ylab="Recovery date error (true-estimated)")
-axis(2,at=seq(0,1,length.out=4),labels=round(seq(floor(min(error.sine.negwedge.adapt)),
-                                                 ceiling(max(error.sine.negwedge.adapt)),length.out=4),1))
-
-dev.off()
+# 
+# laymat=matrix(1:4, nrow=1, byrow=TRUE)
+# 
+# png("~/Box Sync/EstuaryStormResilience/AlgorithmManuscript/posterFig_tpr_error.png",
+#     units="in", res=300, width=8,height=4)
+# 
+# layout(laymat, widths=rep(c(0.4,0.1),2))
+# par(mar=c(3.5,3.5,1.1,0.5), mgp=c(2,0.8,0), cex.axis=1.1, cex.lab=1.2)
+# image(along.s, along.r, tpr.sine.negwedge.adapt, col=rev(viridis(25)), zlim=c(0,1),
+#       xlab="Severity", ylab="Duration (days)")
+# par(mar=c(2.1,3.6,1.1,1.1), mgp=c(2,0.8,0), cex.axis=1.1, cex.lab=1.2)
+# image(z=t(matrix(1:25)),col=rev(viridis(25)),xaxt="n",ylab="True detection rate")
+# 
+# par(mar=c(3.5,3.5,1.1,0.5), mgp=c(2,0.8,0), cex.axis=1.1, cex.lab=1.2)
+# image(along.s, along.r, error.sine.negwedge.adapt, col=viridis(25), ylab="Duration (days)",
+#       xlab="Severity")
+# par(mar=c(2.1,3.6,1.1,1.1), mgp=c(2,0.8,0), cex.axis=1.1, cex.lab=1.2)
+# image(z=t(matrix(1:25)),col=viridis(25),xaxt="n",yaxt="n",ylab="Recovery date error (true-estimated)")
+# axis(2,at=seq(0,1,length.out=4),labels=round(seq(floor(min(error.sine.negwedge.adapt)),
+#                                                  ceiling(max(error.sine.negwedge.adapt)),length.out=4),1))
+# 
+# dev.off()
