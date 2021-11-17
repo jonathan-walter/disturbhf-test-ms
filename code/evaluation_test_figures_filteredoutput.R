@@ -106,14 +106,14 @@ tprSurface<-function(evals, along.s, along.r, plotit=TRUE, title=NULL){
 ## Function to create and plot number of false alarms as function of disturbance 
 ## severity and duration
 
-falmSurface<-function(evals, along.s, along.r, plotit=TRUE, title=NULL, zmax=NULL){
+falmSurface<-function(evals, along.s, along.r, plotit=TRUE, title=NULL, zmax=NULL, denom=1){
   out<-matrix(NA, nrow=length(along.s)-1, ncol=length(along.r)-1)
   
   nfails<-rep(NA, max(evals$simrep))
   severity<-rep(NA, max(evals$simrep))
   recovtime<-rep(NA, max(evals$simrep))
   for(nn in 1:max(evals$simrep)){
-    nfails[nn]<-sum(evals$simrep==nn & evals$detect==0)
+    nfails[nn]<-sum(evals$simrep==nn & evals$detect==0)/denom
     severity[nn]<-evals$severity[evals$simrep==nn][1]
     recovtime[nn]<-evals$recovtime[evals$simrep==nn][1]
   }
@@ -149,6 +149,7 @@ falmSurface<-function(evals, along.s, along.r, plotit=TRUE, title=NULL, zmax=NUL
   }
   return(out)
 }
+
 
 
 errorSurface<-function(evals, along.s, along.r, plotit=TRUE, title=NULL){
@@ -238,23 +239,25 @@ tpr.sine.negs.adapt<-tprSurface(cln.sine.negs.adapt,along.s=seq(0,5,by=0.5),alon
 tpr.sine.poss.adapt<-tprSurface(cln.sine.poss.adapt,along.s=seq(0,5,by=0.5),along.r=seq(3,60,by=5))
 
 
-fpr.flat.negwedge<-falmSurface(eval.flat.negwedge, along.s=seq(0,5,by=0.5),along.r=seq(3,60,by=5))
-fpr.flat.poswedge<-falmSurface(eval.flat.poswedge, along.s=seq(0,5,by=0.5),along.r=seq(3,60,by=5))
-fpr.flat.negs<-falmSurface(eval.flat.negs, along.s=seq(0,5,by=0.5),along.r=seq(3,60,by=5))
-fpr.flat.poss<-falmSurface(eval.flat.poss, along.s=seq(0,5,by=0.5),along.r=seq(3,60,by=5))
-fpr.sine.negwedge<-falmSurface(eval.sine.negwedge, along.s=seq(0,5,by=0.5),along.r=seq(3,60,by=5))
-fpr.sine.poswedge<-falmSurface(eval.sine.poswedge, along.s=seq(0,5,by=0.5),along.r=seq(3,60,by=5))
-fpr.sine.negs<-falmSurface(eval.sine.negs, along.s=seq(0,5,by=0.5),along.r=seq(3,60,by=5))
-fpr.sine.poss<-falmSurface(eval.sine.poss, along.s=seq(0,5,by=0.5),along.r=seq(3,60,by=5))
+denom <- sum(!is.na(sim.sine.negwedge[[1]]$empdiff))
 
-fpr.flat.negwedge.adapt<-falmSurface(eval.flat.negwedge.adapt, along.s=seq(0,5,by=0.5),along.r=seq(3,60,by=5))
-fpr.flat.poswedge.adapt<-falmSurface(eval.flat.poswedge.adapt, along.s=seq(0,5,by=0.5),along.r=seq(3,60,by=5))
-fpr.flat.negs.adapt<-falmSurface(eval.flat.negs.adapt, along.s=seq(0,5,by=0.5),along.r=seq(3,60,by=5))
-fpr.flat.poss.adapt<-falmSurface(eval.flat.poss.adapt, along.s=seq(0,5,by=0.5),along.r=seq(3,60,by=5))
-fpr.sine.negwedge.adapt<-falmSurface(eval.sine.negwedge.adapt, along.s=seq(0,5,by=0.5),along.r=seq(3,60,by=5))
-fpr.sine.poswedge.adapt<-falmSurface(eval.sine.poswedge.adapt, along.s=seq(0,5,by=0.5),along.r=seq(3,60,by=5))
-fpr.sine.negs.adapt<-falmSurface(eval.sine.negs.adapt, along.s=seq(0,5,by=0.5),along.r=seq(3,60,by=5))
-fpr.sine.poss.adapt<-falmSurface(eval.sine.poss.adapt, along.s=seq(0,5,by=0.5),along.r=seq(3,60,by=5))
+fpr.flat.negwedge<-falmSurface(eval.flat.negwedge, along.s=seq(0,5,by=0.5),along.r=seq(3,60,by=5), denom=denom)
+fpr.flat.poswedge<-falmSurface(eval.flat.poswedge, along.s=seq(0,5,by=0.5),along.r=seq(3,60,by=5), denom=denom)
+fpr.flat.negs<-falmSurface(eval.flat.negs, along.s=seq(0,5,by=0.5),along.r=seq(3,60,by=5), denom=denom)
+fpr.flat.poss<-falmSurface(eval.flat.poss, along.s=seq(0,5,by=0.5),along.r=seq(3,60,by=5), denom=denom)
+fpr.sine.negwedge<-falmSurface(eval.sine.negwedge, along.s=seq(0,5,by=0.5),along.r=seq(3,60,by=5), denom=denom)
+fpr.sine.poswedge<-falmSurface(eval.sine.poswedge, along.s=seq(0,5,by=0.5),along.r=seq(3,60,by=5), denom=denom)
+fpr.sine.negs<-falmSurface(eval.sine.negs, along.s=seq(0,5,by=0.5),along.r=seq(3,60,by=5), denom=denom)
+fpr.sine.poss<-falmSurface(eval.sine.poss, along.s=seq(0,5,by=0.5),along.r=seq(3,60,by=5), denom=denom)
+
+fpr.flat.negwedge.adapt<-falmSurface(eval.flat.negwedge.adapt, along.s=seq(0,5,by=0.5),along.r=seq(3,60,by=5), denom=denom)
+fpr.flat.poswedge.adapt<-falmSurface(eval.flat.poswedge.adapt, along.s=seq(0,5,by=0.5),along.r=seq(3,60,by=5), denom=denom)
+fpr.flat.negs.adapt<-falmSurface(eval.flat.negs.adapt, along.s=seq(0,5,by=0.5),along.r=seq(3,60,by=5), denom=denom)
+fpr.flat.poss.adapt<-falmSurface(eval.flat.poss.adapt, along.s=seq(0,5,by=0.5),along.r=seq(3,60,by=5), denom=denom)
+fpr.sine.negwedge.adapt<-falmSurface(eval.sine.negwedge.adapt, along.s=seq(0,5,by=0.5),along.r=seq(3,60,by=5), denom=denom)
+fpr.sine.poswedge.adapt<-falmSurface(eval.sine.poswedge.adapt, along.s=seq(0,5,by=0.5),along.r=seq(3,60,by=5), denom=denom)
+fpr.sine.negs.adapt<-falmSurface(eval.sine.negs.adapt, along.s=seq(0,5,by=0.5),along.r=seq(3,60,by=5), denom=denom)
+fpr.sine.poss.adapt<-falmSurface(eval.sine.poss.adapt, along.s=seq(0,5,by=0.5),along.r=seq(3,60,by=5), denom=denom)
 
 
 hits.flat.negwedge<-eval.flat.negwedge[eval.flat.negwedge$detect==1,]
@@ -356,33 +359,54 @@ joint.min<-min(c(error.flat.negwedge, error.flat.negs, error.sine.negs, error.si
 joint.max<-max(c(error.flat.negwedge, error.flat.negs, error.sine.negs, error.sine.negwedge,
                  error.flat.negwedge.adapt, error.flat.negs.adapt, error.sine.negs.adapt, error.sine.negwedge.adapt))
 
+n=25
+# errorRamp <- colorRampPalette(colors=c("red","lightgrey","blue"))
+# errorPal <- errorRamp(n)
+errorPal <- turbo(n)
+plotScale <- function(x, joint.max){
+  xx <- x + joint.max
+  xx <- xx/max(xx)
+  xx <- round(xx*n)
+  return(xx)
+}
+
+
 png("~/Box Sync/EstuaryStormResilience/AlgorithmManuscript/figSX_recoverror_negative_filt.png",
     units="in", res=300, width=6.5,height=8)
 
+
 layout(laymat4, widths=c(0.87/2,0.87/2,0.13))
 par(mar=c(2.1,2.1,1.1,1.1),oma=c(2.1,5.1,1.3,0))
-image(along.s, along.r, error.flat.negwedge, col=viridis(25), zlim=c(joint.min,joint.max), ylab="")
+image(along.s, along.r, plotScale(error.flat.negwedge,joint.max), col=errorPal, 
+      ylab="", zlim=c(1,n))
 mtext("Wedge disturbance\nFlat background",2,cex=0.9,line=0.25,at=7/8,outer=T)
-image(along.s, along.r, error.sine.negwedge, col=viridis(25), zlim=c(joint.min,joint.max), ylab="")
+image(along.s, along.r, plotScale(error.sine.negwedge,joint.max), col=errorPal, 
+      zlim=c(1,n), ylab="")
 mtext("Wedge disturbance\nSeasonal background",2,cex=0.9,line=0.25,at=5/8,outer=T)
 mtext("S disturbance\nFlat background",2,cex=0.9,line=0.25,at=3/8,outer=T)
-image(along.s, along.r, error.flat.negs, col=viridis(25), zlim=c(joint.min,joint.max))
+image(along.s, along.r, plotScale(error.flat.negs,joint.max), col=errorPal, 
+      zlim=c(1,n))
 mtext("S disturbance\nSeasonal background",2,cex=0.9,line=0.25,at=1/8,outer=T)
-image(along.s, along.r, error.sine.negs, col=viridis(25), zlim=c(joint.min,joint.max))
+image(along.s, along.r, plotScale(error.sine.negs,joint.max), col=errorPal, zlim=c(1,n))
 
-image(along.s, along.r, error.flat.negwedge.adapt, col=viridis(25), zlim=c(joint.min,joint.max), ylab="")
-image(along.s, along.r, error.flat.negs.adapt, col=viridis(25), zlim=c(joint.min,joint.max))
-image(along.s, along.r, error.sine.negwedge.adapt, col=viridis(25), zlim=c(joint.min,joint.max), ylab="")
-image(along.s, along.r, error.sine.negs.adapt, col=viridis(25), zlim=c(joint.min,joint.max))
+image(along.s, along.r, plotScale(error.flat.negwedge.adapt,joint.max), col=errorPal, 
+      zlim=c(1,n), ylab="")
+image(along.s, along.r, plotScale(error.flat.negs.adapt,joint.max), col=errorPal, 
+      zlim=c(1,n))
+image(along.s, along.r, plotScale(error.sine.negwedge.adapt,joint.max), col=errorPal, 
+      zlim=c(1,n), ylab="")
+image(along.s, along.r, plotScale(error.sine.negs.adapt,joint.max), col=errorPal,
+      zlim=c(1,n))
 
 par(mar=c(2.1,3.6,1.1,1.1), mgp=c(2.25,1,0), cex.axis=1.1, cex.lab=1.2)
-image(z=t(matrix(1:25)),col=viridis(25),xaxt="n",yaxt="n",ylab="Recovery date error (true-estimated)")
-axis(2,at=seq(0,1,length.out=4),labels=round(seq(floor(joint.min),ceiling(joint.max),length.out=4),1))
+image(z=t(matrix(1:51)),col=errorPal,xaxt="n",yaxt="n",ylab="Recovery date error (true-estimated)")
+axis(2,at=seq(0,1,length.out=5),labels=round(seq(floor(-1*joint.max),ceiling(joint.max),length.out=5),1))
 
 mtext("Severity",1,outer=T,line=0.5,at=0.9/2)
 mtext("Duration (days)",2,outer=T,line=3.5)
 mtext("Standard reference",outer=T,at=0.9/4,line=-0.5,cex=0.8)
 mtext("Adaptive reference", outer=T, at=0.9/4*3, line=-0.5,cex=0.8)
+
 
 dev.off()
 
@@ -447,8 +471,8 @@ image(along.s, along.r, fpr.sine.negwedge.adapt, col=viridis(25), zlim=c(joint.m
 image(along.s, along.r, fpr.sine.negs.adapt, col=viridis(25), zlim=c(joint.min,joint.max))
 
 par(mar=c(2.1,3.6,1.1,1.1), mgp=c(2.25,1,0), cex.axis=1.1, cex.lab=1.2)
-image(z=t(matrix(1:25)),col=viridis(25),xaxt="n",yaxt="n",ylab="Mean number of false positives")
-axis(2,at=seq(0,1,length.out=4),labels=round(seq(floor(joint.min),ceiling(joint.max),length.out=4),1))
+image(z=t(matrix(1:25)),col=viridis(25),xaxt="n",yaxt="n",ylab="False positive rate")
+axis(2,at=seq(0,1,length.out=4),labels=round(seq(joint.min,joint.max,length.out=4),3))
 
 mtext("Severity",1,outer=T,line=0.5,at=0.9/2)
 mtext("Duration (days)",2,outer=T,line=3.5)

@@ -602,28 +602,3 @@ dev.off()
 # mtext("Seasonal background variation",outer=T,at=0.9/2,line=-0.25)
 # 
 # dev.off()
-
-
-## Figure for ERI poster
-
-laymat=matrix(1:4, nrow=1, byrow=TRUE)
-
-png("~/Box Sync/EstuaryStormResilience/AlgorithmManuscript/posterFig_tpr_error.png",
-    units="in", res=300, width=8,height=4)
-
-layout(laymat, widths=rep(c(0.4,0.1),2))
-par(mar=c(3.5,3.5,1.1,0.5), mgp=c(2,0.8,0), cex.axis=1.1, cex.lab=1.2)
-image(along.s, along.r, tpr.sine.negwedge.adapt, col=rev(viridis(25)), zlim=c(0,1),
-      xlab="Severity", ylab="Duration (days)")
-par(mar=c(2.1,3.6,1.1,1.1), mgp=c(2,0.8,0), cex.axis=1.1, cex.lab=1.2)
-image(z=t(matrix(1:25)),col=rev(viridis(25)),xaxt="n",ylab="True detection rate")
-
-par(mar=c(3.5,3.5,1.1,0.5), mgp=c(2,0.8,0), cex.axis=1.1, cex.lab=1.2)
-image(along.s, along.r, error.sine.negwedge.adapt, col=viridis(25), ylab="Duration (days)",
-      xlab="Severity")
-par(mar=c(2.1,3.6,1.1,1.1), mgp=c(2,0.8,0), cex.axis=1.1, cex.lab=1.2)
-image(z=t(matrix(1:25)),col=viridis(25),xaxt="n",yaxt="n",ylab="Recovery date error (true-estimated)")
-axis(2,at=seq(0,1,length.out=4),labels=round(seq(floor(min(error.sine.negwedge.adapt)),
-                                                 ceiling(max(error.sine.negwedge.adapt)),length.out=4),1))
-
-dev.off()

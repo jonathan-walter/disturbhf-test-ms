@@ -538,23 +538,30 @@ png("~/Box Sync/EstuaryStormResilience/AlgorithmManuscript/figSX_recoverror_posi
 
 layout(laymat4, widths=c(0.87/2,0.87/2,0.13))
 par(mar=c(2.1,2.1,1.1,1.1),oma=c(2.1,5.1,1.3,0))
-image(along.s, along.r, error.flat.poswedge, col=viridis(25), zlim=c(joint.min,joint.max), ylab="")
+image(along.s, along.r, plotScale(error.flat.poswedge,joint.max), col=errorPal, 
+      ylab="", zlim=c(1,n))
 mtext("Wedge disturbance\nFlat background",2,cex=0.9,line=0.25,at=7/8,outer=T)
-image(along.s, along.r, error.sine.poswedge, col=viridis(25), zlim=c(joint.min,joint.max), ylab="")
+image(along.s, along.r, plotScale(error.sine.poswedge,joint.max), col=errorPal, 
+      zlim=c(1,n), ylab="")
 mtext("Wedge disturbance\nSeasonal background",2,cex=0.9,line=0.25,at=5/8,outer=T)
 mtext("S disturbance\nFlat background",2,cex=0.9,line=0.25,at=3/8,outer=T)
-image(along.s, along.r, error.flat.poss, col=viridis(25), zlim=c(joint.min,joint.max))
+image(along.s, along.r, plotScale(error.flat.poss,joint.max), col=errorPal, 
+      zlim=c(1,n))
 mtext("S disturbance\nSeasonal background",2,cex=0.9,line=0.25,at=1/8,outer=T)
-image(along.s, along.r, error.sine.poss, col=viridis(25), zlim=c(joint.min,joint.max))
+image(along.s, along.r, plotScale(error.sine.poss,joint.max), col=errorPal, zlim=c(1,n))
 
-image(along.s, along.r, error.flat.poswedge.adapt, col=viridis(25), zlim=c(joint.min,joint.max), ylab="")
-image(along.s, along.r, error.flat.poss.adapt, col=viridis(25), zlim=c(joint.min,joint.max))
-image(along.s, along.r, error.sine.poswedge.adapt, col=viridis(25), zlim=c(joint.min,joint.max), ylab="")
-image(along.s, along.r, error.sine.poss.adapt, col=viridis(25), zlim=c(joint.min,joint.max))
+image(along.s, along.r, plotScale(error.flat.poswedge.adapt,joint.max), col=errorPal, 
+      zlim=c(1,n), ylab="")
+image(along.s, along.r, plotScale(error.flat.poss.adapt,joint.max), col=errorPal, 
+      zlim=c(1,n))
+image(along.s, along.r, plotScale(error.sine.poswedge.adapt,joint.max), col=errorPal, 
+      zlim=c(1,n), ylab="")
+image(along.s, along.r, plotScale(error.sine.poss.adapt,joint.max), col=errorPal,
+      zlim=c(1,n))
 
 par(mar=c(2.1,3.6,1.1,1.1), mgp=c(2.25,1,0), cex.axis=1.1, cex.lab=1.2)
-image(z=t(matrix(1:25)),col=viridis(25),xaxt="n",yaxt="n",ylab="Recovery date error (true-estimated)")
-axis(2,at=seq(0,1,length.out=4),labels=round(seq(floor(joint.min),ceiling(joint.max),length.out=4),1))
+image(z=t(matrix(1:51)),col=errorPal,xaxt="n",yaxt="n",ylab="Recovery date error (true-estimated)")
+axis(2,at=seq(0,1,length.out=5),labels=round(seq(floor(-1*joint.max),ceiling(joint.max),length.out=5),1))
 
 mtext("Severity",1,outer=T,line=0.5,at=0.9/2)
 mtext("Duration (days)",2,outer=T,line=3.5)

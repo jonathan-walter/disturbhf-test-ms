@@ -15,7 +15,8 @@ doCUSUM <- function(tt, simts, alpha=0.05){
   else{
     if(abs(max(cusum$process)) > abs(min(cusum$process))){
       bdy<-boundary(cusum)[1]
-      d.index <- min(which(cusum$process>bdy))
+      #d.index <- min(which(cusum$process>bdy))
+      d.index <- which.max(cusum$process)
       postdist <- cusum$process[d.index:length(cusum$process)]
       r.index <- min(which(postdist <= bdy/2)) + d.index
       
@@ -23,11 +24,12 @@ doCUSUM <- function(tt, simts, alpha=0.05){
                         recov.date=tt[r.index],
                         tdiff=tt[r.index]-tt[d.index],
                         peakz=max(cusum$process),
-                        peak.date=tt[which.max(cusum$process)])
+                        peak.date=NA)#tt[which.max(cusum$process)])
     }
     if(abs(max(cusum$process)) < abs(min(cusum$process))){
       bdy <- boundary(cusum)[1]*-1
-      d.index <- min(which(cusum$process<bdy))
+      #d.index <- min(which(cusum$process<bdy))
+      d.index <- which.min(cusum$process)
       postdist <- cusum$process[d.index:length(cusum$process)]
       r.index <- min(which(postdist >= bdy/2)) + d.index
       
@@ -35,7 +37,7 @@ doCUSUM <- function(tt, simts, alpha=0.05){
                         recov.date=tt[r.index],
                         tdiff=tt[r.index]-tt[d.index],
                         peakz=max(cusum$process),
-                        peak.date=tt[which.max(cusum$process)])
+                        peak.date=NA)#tt[which.max(cusum$process)])
       
       
     }

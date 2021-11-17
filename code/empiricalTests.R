@@ -71,11 +71,11 @@ png("fig4_nerrs_casestudy.png",
 par(mar=c(3,3,1.1,1.1), mfrow=c(2,1), mgp=c(1.7,0.5,0), tcl=-0.3)
 
 plot(apa.dat$DateTimeFormatted, apa.dat$DO_pct, xlim=c(as.POSIXct("2017-01-01"),as.POSIXct("2018-01-01")),
-     ylab="DO", xlab="2017", type="l", col="black")
+     ylab="DO (% saturation)", xlab="2017", type="l", col="black")
 mtext("Reference period", line=0.1)
 
 plot(apa.dat$DateTimeFormatted, apa.dat$DO_pct, xlim=c(as.POSIXct("2018-01-01"),as.POSIXct("2019-01-01")),
-     ylab="DO", xlab="2018", type="l", col="black")
+     ylab="DO (% saturation)", xlab="2018", type="l", col="black")
 mtext("Evaluation period", line=0.1)
 rect(alarm.apa.DO_pct$dist.date, -10, alarm.apa.DO_pct$recov.date, 120, col="red", density=9)
 abline(v=as.POSIXct("2018-10-10"), lwd=2.5, col="blue")
@@ -201,7 +201,7 @@ tiff("fig5_srs_casestudy.tif",
 par(mar=c(3,3,1.1,1.1), mfrow=c(2,1), mgp=c(1.7,0.5,0), tcl=-0.3)
 
 plot(srs.dat$Date, srs.dat$TA, xlim=c(as.POSIXct("2009-07-01"),as.POSIXct("2010-07-01")),
-     ylab="Air temperature", xlab="2009-2010", type="l", col="black", xaxs="i")
+     ylab="Air temperature (\u00B0C)", xlab="2009-2010", type="l", col="black", xaxs="i")
 polygon(x=c(srs.ref.TA.agg$DateAdj, rev(srs.ref.TA.agg$DateAdj), srs.ref.TA.agg$DateAdj[1]),
         y=c(srs.ref.TA.agg$TA[,2], rev(srs.ref.TA.agg$TA[,1]), srs.ref.TA.agg$TA[1,1]),
         col="grey", border="grey")
@@ -211,7 +211,7 @@ rect(alarm.srs.TA$dist.date, -10, alarm.srs.TA$recov.date, 120, col="red", densi
 
 
 plot(srs.dat$Date, srs.dat$NEE_PI, xlim=c(as.POSIXct("2009-07-01"),as.POSIXct("2010-07-01")),
-     ylab="NEE", xlab="2009-2010", type="l", col="black", xaxs="i")
+     ylab=expression(paste('NEE (',mu,'mol CO'[2]*' m'^-2*"s"^-1*")")), xlab="2009-2010", type="l", col="black", xaxs="i")
 polygon(x=c(srs.ref.NEE.agg$DateAdj, rev(srs.ref.NEE.agg$DateAdj), srs.ref.NEE.agg$DateAdj[1]),
         y=c(srs.ref.NEE.agg$NEE_PI[,2], rev(srs.ref.NEE.agg$NEE_PI[,1]), srs.ref.NEE.agg$NEE_PI[1,1]),
         col="grey", border="grey")
